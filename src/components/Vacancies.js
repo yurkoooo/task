@@ -39,7 +39,7 @@ export default function Vacancies ({jobs, isShown, setIsShown}) {
                 key={index + 1}
                 >
                     <img src={item.pictures[0]} alt="place" className="rounded-[50%]
-                    w-[170px] h-[140px] mr-10 max-[610px]:h-[40%] max-[610px]:w-[15%]" />
+                    w-[170px] h-[140px] mr-10 smax-[610px]:hidden" />
                     <div key={index}>
                         <h2 className="font-proxima font-bold mb-5 max-[610px]:text-[15px] max-[440px]:text-[14px] max-[440px]:mb-[5px]">{item.title}</h2>
                         <p key={item.id} className="font-proxima mb-5 max-[610px]:text-[14px] max-[440px]:text-[13px] max-[440px]:mb-[5px]">{item.description.slice(0, 150)}...</p>
