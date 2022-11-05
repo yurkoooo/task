@@ -1,8 +1,20 @@
+import { useState } from "react";
 
 export default function Detailed ({detailedJob}) {
 
+    const [saved, setSaved] = useState(false);
+    const [count, setCount] = useState(0);
+
     const clickHandler = () => {
         document.location.reload();
+    }
+
+    const saveJob = (e) => {
+        setCount(count + 1);
+        count % 2 == 0 ?
+        setSaved(true)
+        :
+        setSaved(false)
     }
 
     return (
@@ -15,12 +27,16 @@ export default function Detailed ({detailedJob}) {
             Job Details
             </h2>
             <div className="flex max-[600px]:mt-[10px] max-[600px]:w-full max-[600px]:items-center">
-                <div className="flex cursor-pointer [&_svg]:hover:fill-black">
+                <div className={`flex cursor-pointer ${saved ? '[&_svg]:hover:fill-none' : '[&_svg]:hover:fill-black' }`} onClick={saveJob}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} 
-                    stroke="currentColor" className="w-6 h-6 mr-[10px]">
+                    stroke="currentColor" className={`w-6 h-6 mr-[10px] ${saved ? 'fill-[black]' : 'fill-[none]'}`}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
                     </svg>
+                    {saved ? 
+                    <p className="mr-[40px]">Saved</p>
+                    :
                     <p className="mr-[40px]">Save to my list</p>
+                    }
                 </div>
                 <div className="flex cursor-pointer [&_svg]:hover:fill-black">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 mr-[10px]">
@@ -53,7 +69,7 @@ export default function Detailed ({detailedJob}) {
                          font-bold py-2 px-4 mr-[15px] max-[680px]:mb-[10px]">{item}</button> 
                     ))}
                 </div>
-                <p className="mt-[10px] text-[18px]">Benefits</p>
+                <p className="mt-[20px] text-[18px]">Benefits</p>
                 <div className="mt-[20px]">
                     {item.benefits.map((item, index) => (
                         <button key={index} className="bg-[#FFCF0026] border-[1px]
