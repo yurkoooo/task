@@ -8,8 +8,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [jobsPerPage] = useState(5);
   const [isShown, setIsShown] = useState(false);
-
-  const isShownRef = useRef();
+  const [bg, setBg] = useState('bg-[#E6E9F2]')
 
   const fetchApi = async () => {
     let response = await fetch('https://api.json-generator.com/templates/ZM1r0eic3XEy/data?access_token=wm3gg940gy0xek1ld98uaizhz83c6rh2sir9f9fu');
@@ -23,12 +22,6 @@ function App() {
       setLoading(true)
     }
   }
-
-  useEffect(() => {
-    if (isShown) {
-      isShownRef.current.classList.toggle('bg-[#E6E9F2]')
-    }
-  }, [isShown]);
   
   useEffect(() => {
     fetchApi();
@@ -50,7 +43,7 @@ function App() {
   return (
     <>
     {loading ? 
-      <div className='bg-[#E6E9F2]' ref={isShownRef} >
+      <div className={isShown === false ? bg : null}>
          <Vacancies jobs={currentJobs} isShown={isShown} setIsShown={setIsShown} returnTo={returnTo} />
          <Pagination 
          jobsPerPage={jobsPerPage}

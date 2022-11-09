@@ -1,13 +1,9 @@
 import { useState } from "react";
 
-export default function Detailed ({detailedJob}) {
+export default function Detailed ({detailedJob, setIsShown, currentPosition}) {
 
     const [saved, setSaved] = useState(false);
     const [count, setCount] = useState(0);
-
-    const clickHandler = () => {
-        document.location.reload();
-    }
 
     const saveJob = (e) => {
         setCount(count + 1);
@@ -15,6 +11,11 @@ export default function Detailed ({detailedJob}) {
         setSaved(true)
         :
         setSaved(false)
+    }
+
+    const returnBoard = () => {
+        setIsShown(false);
+        document.documentElement.scrollTop = document.body.scrollTop = currentPosition;
     }
 
     return (
@@ -84,7 +85,7 @@ export default function Detailed ({detailedJob}) {
                 <div 
                 className="flex items-center bg-[#F8F8F8] border-[1px] border-[rgba(58, 69, 98, 0.5)]
                  w-[210px] rounded-[8px] h-[50px] cursor-pointer mt-[50px] mb-[50px] hover:bg-[honeydew]"
-                 onClick={clickHandler}
+                 onClick={returnBoard}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-[30px] h-[50px]">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />

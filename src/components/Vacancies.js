@@ -5,9 +5,11 @@ import Detailed from './Detailed';
 export default function Vacancies ({jobs, isShown, setIsShown}) {
 
     const [detailedJob, setDetailedJob] = useState([]);
+    const [currentPosition, setCurrentPosition] = useState(0);
 
     const clickHandler = (e) => {
         setIsShown(current => !current);
+        setCurrentPosition(e.view.scrollY);
         jobs.map((item, index) => (
             e.currentTarget.id == index ?
             setDetailedJob([item])
@@ -23,7 +25,7 @@ export default function Vacancies ({jobs, isShown, setIsShown}) {
         <Detailed
         detailedJob={detailedJob}
         setIsShown={setIsShown}
-        isShown={isShown}
+        currentPosition={currentPosition}
         />
         :
         <div className="pt-10">
