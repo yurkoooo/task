@@ -16,6 +16,7 @@ export default function Vacancies ({jobs, isShown, setIsShown}) {
             :
             null
         ))
+        document.documentElement.scrollTop = 0;
     }
     
 
